@@ -25,7 +25,7 @@ body {
 }
 
 /* Formulário */
-form {
+form, .container {
     background-color: #ffffffcc;
     padding: 30px 40px;
     border-radius: 10px;

@@ -22,6 +22,9 @@
 <?php
     ## php: precisa ser name ao invés de id no input
     ## isset: garante que existe a chave
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
     session_start();
     include "conexao.php";
     if($_SERVER["REQUEST_METHOD"] == "POST"){

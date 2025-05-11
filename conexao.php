@@ -46,15 +46,14 @@
 
     function excluirUsuario($conn, $id){
         $q = "DELETE FROM usuarios WHERE id = '$id'";
-        echo "$id";
+        $q2 = "DELETE FROM tarefas WHERE id_usuario = '$id'";
         $resultado = $conn->query($q);
-        if($resultado){
+        $resultado2 = $conn->query($q2);
+        if($resultado && $resultado2){
             header("location: logout.php");
             exit;
         } else {
             echo "Erro ao excluir conta.";
-        }
-        
+        }   
     }
-    
 ?>
