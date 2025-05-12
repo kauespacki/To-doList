@@ -21,11 +21,14 @@
 
 <?php
     ## php: precisa ser name ao invés de id no input
-    ## isset: garante que existe a chave
+    ## isset: garante que existe a chave e não é null
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     session_start();
+    if(isset($_SESSION["id"]) && $_SESSION["id"] !== ""){
+        header("location: bem-vindo.php");
+    }
     include "conexao.php";
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $usuario = $_POST["usuario"] ?? "";

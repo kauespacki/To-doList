@@ -28,12 +28,21 @@
     include "conexao.php";
     $lista = listarTarefas($conn, $_SESSION["id"]);
     echo "<ol>";
-    foreach($lista as $item){
-            echo "<li id='itemTarefa'>" . $item['descricao'] . "</li>";
+    foreach($lista as $indice => $item){
+            if($item['descricao'] === "Nenhuma tarefa!"){
+                echo $item['descricao'];
+                break;
+            }
+            echo "<li style='display: flex; align-items: center; justify-content: space-between;'>"; 
+            echo "<p>" . $indice+1 . ". " . $item['descricao'] . "</p>";
+            echo "<a href='conexao.php?acao=deletartarefa&id=" . $item['id'] . "' class='erro'>Excluir</a>";
+            echo "</li>";
     }
     echo "</ol>";
 ?>
 
 <a href="logout.php">Sair</a>
 <a href="conexao.php?acao=deletar" onclick="return confirm('Tem certeza?');">Excluir conta</a>
+<a href="adicionartarefa.php">Adicionar tarefas</a>
+<a href="atualizartarefa.php">Atualizar tarefas</a>
 </div>

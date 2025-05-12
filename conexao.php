@@ -2,7 +2,7 @@
     if (session_status() === PHP_SESSION_NONE){
         session_start();
     }
-    $conn = new mysqli("localhost", "root", "", "to_do_list");
+    $conn = new mysqli("localhost", "root", "", "to_do_list", 3307);
     if($conn->connect_error){
         die("Erro na conexão ao banco: " . $conn->connect_error);
     }
@@ -10,6 +10,14 @@
         $acao = $_GET["acao"] ?? null;
         if(isset($acao) && $acao == "deletar"){
             excluirUsuario($conn, $_SESSION["id"]);
+        }
+        if(isset($acao) && $acao == "deletartarefa"){
+            if (!isset($_SESSION["id"]) || $_SESSION["id"] === ""){
+                header("location: index.php");
+                exit;
+            }
+            $idTarefa = $_GET["id"] ?? null;
+            excluirTarefa($conn, $idTarefa);
         }
     }
 
@@ -55,5 +63,33 @@
         } else {
             echo "Erro ao excluir conta.";
         }   
+    }
+
+    function excluirTarefa($conn, $idTarefa){
+        $q = "DELETE FROM `tarefas` WHERE `tarefas`.`id` = '$idTarefa' AND id_usuario =" . $_SESSION["id"];
+        $resultado = $conn->query($q);
+        header("location: bem-vindo.php");
+        exit;
+    }
+
+    function adicionarTarefa($conn, $idUsuario, $descricao){
+        $q = "INSERT INTO `tarefas` (`id`, `id_usuario`, `descricao`) VALUES (NULL, '$idUsuario', '$descricao');";
+        $resultado = $conn->query($q);
+    }
+
+    function atualizarTarefa($conn, $idUsuario, $idTarefa, $descricao){
+        $idTarefa = $idTarefa - 1; // no SQL o parametro OFFSET precisa ser -1;
+        $q = "SELECT * FROM tarefas
+        WHERE id_usuario = '$idUsuario'
+        LIMIT 1 OFFSET $idTarefa;";
+        $resultado = $conn->query($q);
+        if($resultado->num_rows > 0){
+            $linha = $resultado->fetch_assoc();
+            $idRealTarefa = $linha["id"];
+        } else {
+            echo "<script>return alert('Erro ao atualizar.')</script>";
+        }
+        $q2 = "UPDATE `tarefas` SET `descricao` = '$descricao' WHERE `id` = ". $idRealTarefa;
+        $resultado2 = $conn->query($q2);
     }
 ?>
