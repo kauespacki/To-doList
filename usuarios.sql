@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Tempo de geração: 11/05/2025 às 17:06
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- Host: localhost:3307
+-- Tempo de geração: 12/05/2025 às 16:23
+-- Versão do servidor: 10.4.21-MariaDB
+-- Versão do PHP: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,7 +33,7 @@ CREATE TABLE `usuarios` (
   `usuario` varchar(16) NOT NULL,
   `email` varchar(64) DEFAULT NULL,
   `senha` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Despejando dados para a tabela `usuarios`
@@ -41,9 +41,10 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nome`, `usuario`, `email`, `senha`) VALUES
 (1, 'Admin', 'admin', NULL, 'admin'),
-(2, 'Kaue', 'kaue', 'kaue@gmail.com', '123'),
 (7, 'Irineu', 'irineu', 'irineu@gmail.com', '123'),
-(8, 'Kevin Silva', 'kevin', 'kevin@gmail.com', '123');
+(8, 'Kevin Silva', 'kevin', 'kevin@gmail.com', '123'),
+(16, 'Kaue Spacki', 'kaue', 'kaue@gmail.com', '123'),
+(17, 'João Paulo', 'joao', 'joao@gmail.com', '123');
 
 --
 -- Índices para tabelas despejadas
@@ -64,7 +65,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

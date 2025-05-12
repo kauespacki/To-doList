@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Tempo de geração: 11/05/2025 às 17:06
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- Host: localhost:3307
+-- Tempo de geração: 12/05/2025 às 16:23
+-- Versão do servidor: 10.4.21-MariaDB
+-- Versão do PHP: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,16 +31,15 @@ CREATE TABLE `tarefas` (
   `id` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `descricao` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Despejando dados para a tabela `tarefas`
 --
 
 INSERT INTO `tarefas` (`id`, `id_usuario`, `descricao`) VALUES
-(1, 2, 'Estudar C#'),
-(2, 2, 'Comer farofa'),
-(5, 1, 'teste');
+(24, 16, 'Beber agua'),
+(25, 16, 'Jogar');
 
 --
 -- Índices para tabelas despejadas
@@ -60,7 +59,7 @@ ALTER TABLE `tarefas`
 -- AUTO_INCREMENT de tabela `tarefas`
 --
 ALTER TABLE `tarefas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
